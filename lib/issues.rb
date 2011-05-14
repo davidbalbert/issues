@@ -3,4 +3,3 @@ module Issues
 end
 
 require 'issues/version'
-require 'issues/command'
