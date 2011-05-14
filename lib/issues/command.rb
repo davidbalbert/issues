@@ -20,9 +20,9 @@ module Issues
         exit 0
       end
 
-      cmd = ARGV.shift
+      cmd = @args.shift
       if require? "cmd/#{cmd}"
-        Issues.send cmd.to_s.gsub('-', '_')
+        Issues.send cmd.to_s.gsub('-', '_'), @args
       else
         $stderr.puts "Unknown command: #{cmd}"
         exit 1
