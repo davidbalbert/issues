@@ -1,5 +1,7 @@
 module Issues
-  # Your code goes here...
+  ISSUES_DIR = ENV['HOME'] + "/.issues"
 end
+
+require 'grit'
 
 require 'issues/version'
