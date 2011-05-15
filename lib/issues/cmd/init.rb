@@ -1,5 +1,5 @@
 module Issues extend self
-  def init(args)
+  def init
     repo_dir = find_git_repo
     unless repo_dir
       $stderr.puts "Couldn't find a git repo in #{Dir.pwd}"
