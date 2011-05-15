@@ -11,6 +11,21 @@ module Issues extend self
     end
 
     repo = Grit::Repo.new(repo_dir)
+
+    remotes = Hash[repo.config.keys.map do |key|
+      if key =~ /^remote\.(\w+)\.url$/
+        [$1, repo.config[key]]
+      else
+        nil
+      end
+    end.compact]
+
+    gh_remotes = remotes.select { |name, url| url.include? "github.com" }
+
+    if gh_remotes.size == 0
+      $stderr.puts "No github remotes found in #{Dir.pwd}"
+      exit 1
+    end
   end
 
   def find_git_repo
