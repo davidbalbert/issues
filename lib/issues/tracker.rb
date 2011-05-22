@@ -23,7 +23,7 @@ module Issues
     end
 
     def make_current!
-      File.delete("#{dot_issues_repo_path}/current")
+      File.delete("#{dot_issues_repo_path}/current") if File.exists?("#{dot_issues_repo_path}/current")
       File.symlink(tracker_path, "#{dot_issues_repo_path}/current")
     end
 

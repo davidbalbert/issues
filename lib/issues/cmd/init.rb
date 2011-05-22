@@ -1,10 +1,6 @@
 module Issues extend self
   def init
-    repo_dir = find_git_repo
-    unless repo_dir
-      $stderr.puts "Couldn't find a git repo in #{Dir.pwd}"
-      exit 1
-    end
+    repo_dir = find_repo_or_exit
 
     unless Dir.exists? ISSUES_DIR
       Dir.mkdir ISSUES_DIR
@@ -35,20 +31,5 @@ module Issues extend self
 
     current = trackers.select { |t| t.name == "origin" }[0] || trackers[0]
     current.make_current!
-  end
-
-  def find_git_repo
-    pwd = Dir.pwd
-    while true do
-      if Dir.pwd == "/"
-        Dir.chdir pwd
-        return nil
-      elsif Dir.exists? ".git"
-        git_dir = Dir.pwd
-        Dir.chdir pwd
-        return git_dir
-      end
-      Dir.chdir ".."
-    end
   end
 end
