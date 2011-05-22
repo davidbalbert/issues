@@ -5,3 +5,4 @@ end
 require 'grit'
 
 require 'issues/version'
+require 'issues/tracker'

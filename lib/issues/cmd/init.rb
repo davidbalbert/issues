@@ -26,6 +26,15 @@ module Issues extend self
       $stderr.puts "No github remotes found in #{Dir.pwd}"
       exit 1
     end
+
+    trackers = []
+    gh_remotes.each do |name, url|
+      trackers << tracker = Tracker.new(name, url, repo_dir)
+      tracker.save
+    end
+
+    current = trackers.select { |t| t.name == "origin" }[0] || trackers[0]
+    current.make_current!
   end
 
   def find_git_repo
