@@ -5,7 +5,7 @@ Proposed usage
 --------------
 
     $ issues init                                   # initializes an issue tracker for each github remote
-    $ issues tracker                                # lists issue trackers
+    $ issues trackers                               # lists issue trackers
     $ issues use <tracker>                          # sets the active issue tracker to be "tracker"
     $ issues pull                                   # pulls latest issue info from each remote tracker
     $ issues push                                   # pushes local issue updates to remote tracker
